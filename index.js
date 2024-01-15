@@ -39,6 +39,15 @@ app.get('/', function(req,res){
 })
 
 
+app.get('/add', function(req,res){
+
+    res.render('add')
+
+
+})
+
+
+
 
 app.get('/add', function(req,res){
     let sql = 'insert into cars ( make, model, image, price) values ("Nissan", "Skyline", "supra.jpg", 200000)';
