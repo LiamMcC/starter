@@ -4,6 +4,10 @@ var mysql = require('mysql');
 
 app.set('view engine', 'ejs'); // Set the template engine 
 
+var bodyParser = require("body-parser") // call body parser module and make use of it
+app.use(bodyParser.urlencoded({extended:true}));
+
+
 
 // ******************************** Start of SQL **************************************** //
 // First we need to tell the application where to find the database
@@ -29,7 +33,7 @@ db.connect((err) =>{
 
 // **********************************  Code from here **************************
 app.get('/', function(req,res){
-    let sql = 'SELECT * FROM cars';
+    let sql = 'SELECT * FROM games';
     let query = db.query(sql, (err,result) => {
         if(err) throw err;
         console.log(result);
@@ -47,17 +51,14 @@ app.get('/add', function(req,res){
 })
 
 
-
-
-app.get('/add', function(req,res){
-    let sql = 'insert into cars ( make, model, image, price) values ("Nissan", "Skyline", "supra.jpg", 200000)';
-    let query = db.query(sql, (err,result) => {
+app.post('/add', function(req,res){
+    let sql = 'insert into games ( title, price) values (?, ?)';
+    let query = db.query(sql,[req.body.name, req.body.price], (err,result) => {
         if(err) throw err;
         console.log(result);
         res.redirect( '/')   
     });
-   
-    
+      
     
 })
 
