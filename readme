@@ -1,5 +1,5 @@
 1. run npm init in terminal
-2. run npm install ejs express mysql
+2. run npm install ejs express mysql body-parser
 3. change database connection details in index.js file
 4. save all 
 5. node index.js in terminal
